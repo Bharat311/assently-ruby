@@ -37,6 +37,30 @@ module Assently
       get "/api/v2/getdocumentdata", { "caseId" => case_id, "documentId" => document_id }
     end
 
+    # Method to create case from template
+    def create_case_from_template options = {}
+      post "/api/v2/createcasefromtemplate", options.to_json
+    end
+
+    def send_case id
+      post "/api/v2/sendcase", JSON.pretty_generate({ id: id })
+    end
+
+    # Method to update case
+    def update_case options = {}
+      post "/api/v2/updatecase", options.to_json
+    end
+
+    # Method to recall a case
+    def recall_case id
+      post "/api/v2/recallcase", JSON.pretty_generate({ id: id })
+    end
+
+    # Method to delete a case
+    def delete_case id
+      post "/api/v2/deletecase", JSON.pretty_generate({ id: id })
+    end
+
     def post api_command, body = nil
       make_response make_post(api_command, body)
     end
